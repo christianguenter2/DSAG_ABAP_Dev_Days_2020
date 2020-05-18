@@ -1,0 +1,16 @@
+projection;
+
+define behavior for ZCAA361_C_Travel_CG1 alias Travel
+use etag
+{
+  use create;
+  use update;
+  use delete;
+  use association _BOOKING { create; }
+}
+
+define behavior for ZCAA361_C_Booking_CG1 alias Booking
+{
+  use update;
+  use delete;
+}

@@ -1,0 +1,25 @@
+managed; // implementation in class zbp_caa361_i_travel_cg1 unique;
+
+define behavior for ZCAA361_I_Travel_CG1 alias travel
+persistent table zcaa361_tra_cg1
+lock master
+//authorization master ( instance )
+etag master Last_Changed_At
+{
+  create;
+  update;
+  delete;
+  association _Booking { create; }
+}
+
+define behavior for ZCAA361_I_Booking_CG1 alias Booking
+persistent table zcaa361_book_cg1
+lock dependent ( Travel_ID = Travel_ID )
+//authorization dependent by <association>
+etag master Last_Changed_At
+{
+  update;
+  delete;
+
+  field ( readonly ) Travel_ID;
+}
