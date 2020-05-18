@@ -1,0 +1,99 @@
+@Metadata.layer: #CORE
+@UI: {
+   headerInfo: { typeName: 'Travel',
+                 typeNamePlural: 'Travels',
+                 title: { type: #STANDARD, value: 'TravelID' },
+                 description: { type: #STANDARD, value: 'Description' }
+                 },
+   presentationVariant: [{ sortOrder: [{ by: 'TravelID', direction: #DESC }] }]
+  }
+annotate view ZCAA361_C_Travel_CG1 with
+{
+  //ZCAA361_C_Travel_CG1
+  @UI.facet: [ { id:              'Travel',
+                 purpose:         #STANDARD,
+                 type:            #COLLECTION,
+                 label:           'Travel',
+                 position:        10 },
+               { id:              'Admin',
+                 purpose:         #STANDARD,
+                 type:            #FIELDGROUP_REFERENCE,
+                 parentId:        'Travel',
+                 label:           'Administrative Data',
+                 targetQualifier: 'AdminFG',
+                 position:        10 },
+               { id:              'Dates',
+                 purpose:         #STANDARD,
+                 type:            #FIELDGROUP_REFERENCE,
+                 parentId:        'Travel',
+                 label:           'Dates',
+                 targetQualifier: 'DateFG',
+                 position:        20 },
+               { id:              'Costs',
+                 purpose:         #STANDARD,
+                 type:            #FIELDGROUP_REFERENCE,
+                 parentId:        'Travel',
+                 label:           'Costs',
+                 targetQualifier: 'CostFG',
+                 position:        30 },
+               { id:              'Booking',
+                 purpose:         #STANDARD,
+                 type:            #LINEITEM_REFERENCE,
+                 label:           'Booking',
+                 position:        20,
+                 targetElement:   '_Booking'},
+               { id:              'PriceDP',
+                 purpose:         #STANDARD,
+                 type:            #DATAPOINT_REFERENCE,
+                 targetQualifier: 'Price',
+                 position:        10 },
+               { id:              'StatusDP',
+                 purpose:         #STANDARD,
+                 type:            #DATAPOINT_REFERENCE,
+                 targetQualifier: 'StatusDP',
+                 position:        20 }
+            ]  @UI: {
+     lineItem:       [ { position: 10, importance: #HIGH } ],
+     fieldGroup:     [ { position: 10, qualifier: 'AdminFG' } ] ,
+     selectionField: [ { position: 10 } ] }
+  TravelID;
+  @UI: {
+  lineItem:       [ { position: 20, importance: #HIGH } ],
+  fieldGroup:     [ { position: 20, qualifier: 'AdminFG' } ],
+  selectionField: [ { position: 20 } ] }
+  AgencyID;
+  @UI: {
+  lineItem:       [ { position: 30, importance: #HIGH } ],
+  fieldGroup:     [ { position: 30, qualifier: 'AdminFG' } ],
+  selectionField: [ { position: 30 } ] }
+  CustomerID;
+  @UI: {
+   lineItem:       [ { position: 40, importance: #MEDIUM } ],
+   fieldGroup:     [ { position: 40, qualifier: 'DateFG' } ] }
+  BeginDate;
+  @UI: {
+   lineItem:       [ { position: 50, importance: #MEDIUM } ],
+   fieldGroup:     [ { position: 50, qualifier: 'DateFG' } ] }
+  EndDate;
+  @UI.fieldGroup:     [ { position: 20, qualifier: 'CostFG' }]
+  BookingFee;
+  @UI: {
+   lineItem:       [ { position: 80, importance: #MEDIUM } ],
+   fieldGroup:     [ { position: 10, qualifier: 'CostFG' } ],
+   dataPoint:        { qualifier: 'Price' }
+   }
+  TotalPrice;
+  @UI: {
+  lineItem:       [ { position: 90, importance: #HIGH }
+  //                           ,{ type: #FOR_ACTION, dataAction: 'bookTravel', label: 'Book Travel' }
+          ],
+  //          identification: [ { type: #FOR_ACTION, dataAction: 'bookTravel', label: 'Book Travel' } ],
+  fieldGroup:     [ { position: 50, label: 'Status', qualifier: 'AdminFG' } ],
+  dataPoint:        { qualifier: 'StatusDP' }
+  }
+  TravelStatus;
+  @UI.fieldGroup: [ { position: 40, qualifier: 'AdminFG' } ]
+  Description;
+  @UI.hidden: true
+  LastChangedAt;
+}

@@ -1,0 +1,5 @@
+@EndUserText.label: 'service definition travel'
+define service Zcaa361_ui_travel_cg1 {
+  expose ZCAA361_C_Travel_CG1 as Travel;
+  expose ZCAA361_C_Booking_CG1 as Booking;
+}
