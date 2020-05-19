@@ -1,4 +1,4 @@
-managed; // implementation in class zbp_caa361_i_travel_cg1 unique;
+managed implementation in class zbp_caa361_i_travel_cg1 unique;
 
 define behavior for ZCAA361_I_Travel_CG1 alias travel
 persistent table zcaa361_tra_cg1
@@ -10,6 +10,16 @@ etag master Last_Changed_At
   update;
   delete;
   association _Booking { create; }
+
+  field ( readonly ) Status;
+
+  validation validateDates on save { field begin_date, end_date; }
+
+  determination setInitialStatus on modify { create; }
+
+  action bookTravel result [1] $self;
+  action cancelTravel result [1] $self;
+
 }
 
 define behavior for ZCAA361_I_Booking_CG1 alias Booking

@@ -7,6 +7,8 @@ use etag
   use update;
   use delete;
   use association _BOOKING { create; }
+  use action bookTravel;
+  use action cancelTravel;
 }
 
 define behavior for ZCAA361_C_Booking_CG1 alias Booking

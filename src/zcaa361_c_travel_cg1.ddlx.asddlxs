@@ -85,9 +85,10 @@ annotate view ZCAA361_C_Travel_CG1 with
   TotalPrice;
   @UI: {
   lineItem:       [ { position: 90, importance: #HIGH }
-  //                           ,{ type: #FOR_ACTION, dataAction: 'bookTravel', label: 'Book Travel' }
+                             ,{ type: #FOR_ACTION, dataAction: 'bookTravel', label: 'Book Travel' }
+                             ,{ type: #FOR_ACTION, dataAction: 'cancelTravel', label: 'Canc Travel' }
           ],
-  //          identification: [ { type: #FOR_ACTION, dataAction: 'bookTravel', label: 'Book Travel' } ],
+  identification: [ { type: #FOR_ACTION, dataAction: 'bookTravel', label: 'Book Travel' }, { type: #FOR_ACTION, dataAction: 'cancelTravel', label: 'Canc Travel' } ],
   fieldGroup:     [ { position: 50, label: 'Status', qualifier: 'AdminFG' } ],
   dataPoint:        { qualifier: 'StatusDP' }
   }
